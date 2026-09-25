@@ -45,7 +45,7 @@ const PROJECTS = [
   },
 
   {
-    name: "Plunder",
+    name: "Plunder (Under Construction)",
     tagline: "A pirate board game for six swashbucklers, sailing out of a single browser tab.",
     description:
       "An online adaptation of the board game Plunder, built with the same constraint I gave myself for Otrio: vanilla HTML, CSS, and JavaScript, no dependencies. Up to six players share one screen to sail the high seas. It's an ongoing exercise in how far you can push game state, turn order, and animation with nothing but the platform.",
@@ -90,14 +90,6 @@ const PROJECTS = [
     featured: false,
     tech: ["Python", "Locust", "OpenAPI"],
     links: [{ label: "Source", href: "https://github.com/hop-along-polly/crucible" }],
-  },
-  {
-    name: "mimic",
-    tagline: "A REST API that always answers with the exact response you asked for. Invaluable for tests.",
-    year: "2025",
-    featured: false,
-    tech: ["Python", "Testing", "REST"],
-    links: [{ label: "Source", href: "https://github.com/hop-along-polly/mimic" }],
   },
   {
     name: "scribbles",
