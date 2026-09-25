@@ -5,7 +5,7 @@
 
    The Writing section pulls live from the dev.to API using the username in
    data/site.js, so publishing a post on dev.to is all it takes for it to
-   appear here — no commit, no deploy.
+   appear here, with no commit and no deploy.
 
    Two things below are still worth knowing about:
 
@@ -15,14 +15,14 @@
 
    2. ARTICLES_FALLBACK is the snapshot rendered if dev.to is unreachable.
       It only needs refreshing if you care about offline fidelity. Articles
-      written somewhere *other* than dev.to can also be added here — anything
+      written somewhere *other* than dev.to can also be added here. Anything
       listed is merged in and de-duplicated by URL.
    ========================================================================== */
 
 const ARTICLE_NOTES = {
   "a-pythonic-guide-to-solid-design-principles": {
     pinned: true,
-    note: "My most-read piece — SOLID explained in Python, without the Java ceremony.",
+    note: "My most-read piece. SOLID explained in Python, without the Java ceremony.",
   },
   "go-v-python-a-technical-deep-dive": {
     note: "A long-form comparison of the two languages I reach for most.",

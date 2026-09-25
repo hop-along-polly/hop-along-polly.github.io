@@ -8,7 +8,7 @@
      tagline    (required) One line. Shown under the title.
      description             Longer prose. Featured cards only.
      year                    String. Shown in the card kicker.
-     featured                true  -> large card with artwork, in "Selected Work"
+     featured                true  -> large card with artwork, in "Portfolio"
                              false -> compact card in "More from the Workshop"
      status                  Optional pill, e.g. "Live", "In progress", "Archived".
      tech       (required) Array of strings. Rendered as monospace chips.
@@ -24,16 +24,16 @@
 const PROJECTS = [
   {
     name: "Otrio Online",
-    tagline: "Three-in-a-row with three different ways to win — and a bot that knows all of them.",
+    tagline: "Three-in-a-row with three different ways to win, and a bot that knows all of them.",
     description:
-      "Otrio is a ring-placement game for 2–4 players: you're racing to line up three rings before anyone else, except \"three in a row\" means three different things at once. Same-size, ascending-size, and concentric-stack all win, so every placement is simultaneously offense and defense. I built the whole thing — board, drag-and-drop, win detection across all three conditions, and a bot opponent — in plain HTML, CSS, and JavaScript. No framework, no bundler, no install step. Open the file and play.",
+      "Otrio is a ring-placement game for 2 to 4 players: you're racing to line up three rings before anyone else, except \"three in a row\" means three different things at once. Same-size, ascending-size, and concentric-stack all win, so every placement is simultaneously offense and defense. I built the whole thing (board, drag-and-drop, win detection across all three conditions, and a bot opponent) in plain HTML, CSS, and JavaScript. No framework, no bundler, no install step. Open the file and play.",
     year: "2026",
     featured: true,
     status: "Live",
     tech: ["JavaScript", "HTML5", "CSS3", "Game AI", "Zero dependencies"],
     highlights: [
-      "Three simultaneous win conditions — same-size, ordered-size, and concentric",
-      "Bot opponent written from scratch; mix humans and bots across 2–4 seats",
+      "Three simultaneous win conditions: same-size, ordered-size, and concentric",
+      "Bot opponent written from scratch; mix humans and bots across 2 to 4 seats",
       "Built-in tutorial, light and dark themes, plays on phone or desktop",
       "Ships as three files: no build step, no package manager, no downloads",
     ],
@@ -55,7 +55,7 @@ const PROJECTS = [
     tech: ["JavaScript", "HTML5", "CSS3", "Game state", "Zero dependencies"],
     highlights: [
       "Supports up to 6 players in a single hot-seat session",
-      "Hand-rolled turn and game-state engine — no framework doing the bookkeeping",
+      "Hand-rolled turn and game-state engine, with no framework doing the bookkeeping",
       "Nautical art direction carried end to end, from setup screen to scoring",
     ],
     links: [
@@ -69,7 +69,7 @@ const PROJECTS = [
 
   {
     name: "fastapi-webapp-react",
-    tagline: "A production-shaped starter for FastAPI, React, and TypeScript — wired together properly.",
+    tagline: "A production-shaped starter for FastAPI, React, and TypeScript, wired together properly.",
     year: "2026",
     featured: false,
     tech: ["Python", "FastAPI", "React", "TypeScript"],
@@ -77,7 +77,7 @@ const PROJECTS = [
   },
   {
     name: "kata",
-    tagline: "The exercises I reach for when mentoring developers — deliberate practice, not puzzles.",
+    tagline: "The exercises I reach for when mentoring developers: deliberate practice, not puzzles.",
     year: "2022",
     featured: false,
     tech: ["Python", "Mentoring", "TDD"],
@@ -101,7 +101,7 @@ const PROJECTS = [
   },
   {
     name: "scribbles",
-    tagline: "A completely unstyled component library — behaviour and accessibility, zero opinions on looks.",
+    tagline: "A completely unstyled component library: behaviour and accessibility, zero opinions on looks.",
     year: "2025",
     featured: false,
     tech: ["TypeScript", "Components", "a11y"],

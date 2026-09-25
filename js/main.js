@@ -1,5 +1,5 @@
 /* ==========================================================================
-   main.js — renders every section from the files in data/.
+   main.js renders every section from the files in data/.
    --------------------------------------------------------------------------
    Adding content should never mean touching this file. Projects come from
    data/projects.js, certifications from data/certifications.js, and articles
@@ -226,27 +226,23 @@
 
   const MONTHS = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
 
-  /** "Nov 2028" -> Date at the end of that month, or null if unparseable. */
-  function endOfMonth(label) {
+  /** "May 22 2029" -> Date, or null if unparseable. */
+  function parseCertDate(label) {
     if (!label) return null;
     const parts = String(label).trim().split(/\s+/);
-    if (parts.length !== 2) return null;
+    if (parts.length !== 3) return null;
     const month = MONTHS.indexOf(parts[0].slice(0, 3).toLowerCase());
-    const year = parseInt(parts[1], 10);
-    if (month < 0 || isNaN(year)) return null;
-    return new Date(year, month + 1, 0);
+    const day = parseInt(parts[1], 10);
+    const year = parseInt(parts[2], 10);
+    if (month < 0 || isNaN(day) || isNaN(year)) return null;
+    return new Date(year, month, day);
   }
 
   function renderCerts() {
     $("#certs-list").innerHTML = CERTIFICATIONS.map((cert) => {
-      const expiry = endOfMonth(cert.expires);
+      const expiry = parseCertDate(cert.expires);
       const active = expiry ? expiry >= new Date() : null;
-
-      /* Kept to one line so cards in a row stay the same height. */
-      let dates = "";
-      if (cert.issued && cert.expires) dates = esc(cert.issued) + " — " + esc(cert.expires);
-      else if (cert.issued) dates = "Issued " + esc(cert.issued);
-      else if (cert.expires) dates = "Expires " + esc(cert.expires);
+      const dates = cert.expires ? "Expires " + esc(cert.expires) : "";
 
       return `
         <article class="cert reveal">
@@ -283,7 +279,7 @@
   }
 
   /* ==========================================================================
-     Articles — live from dev.to, with a local fallback
+     Articles: live from dev.to, with a local fallback
      ========================================================================== */
 
   /** Attach any hand-written note whose key appears in the article URL. */
@@ -485,7 +481,7 @@
       .catch(() => {
         paintArticles(
           mergeArticles(fallback, []),
-          "Showing a saved copy — dev.to couldn't be reached just now."
+          "Showing a saved copy. dev.to couldn't be reached just now."
         );
       });
   }

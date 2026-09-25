@@ -1,11 +1,11 @@
 # hop-along-polly.github.io
 
-My portfolio site — the half of my work that doesn't fit on a résumé.
+My portfolio site: the half of my work that doesn't fit on a résumé.
 Live at **<https://hop-along-polly.github.io/>**.
 
-Built the same way as the games it showcases: plain HTML, CSS, and JavaScript.
-No framework, no bundler, no `npm install`, no build step. Push to `main` and
-GitHub Pages serves it.
+Built the same way as the games it showcases, with plain HTML, CSS, and
+JavaScript. No framework, no bundler, no `npm install`, no build step. Push to
+`main` and GitHub Pages serves it.
 
 ---
 
@@ -22,9 +22,9 @@ Open `data/projects.js` and drop a new object into the array:
 {
   name: "My New Thing",
   tagline: "One line that makes someone want to click.",
-  description: "A paragraph. Featured cards only — omit for compact ones.",
+  description: "A paragraph. Featured cards only, so omit it for compact ones.",
   year: "2026",
-  featured: true,            // true  -> big card with artwork, in Selected Work
+  featured: true,            // true  -> big card with artwork, in Portfolio
                              // false -> compact card in More from the Workshop
   status: "Live",            // optional pill
   tech: ["TypeScript", "Postgres"],
@@ -48,18 +48,18 @@ Anything without either falls back to the `grid` motif.
 
 ### Add an article
 
-Nothing to do. The Writing section fetches live from the dev.to API using
+Nothing to do. The Writing section fetches from the dev.to API using
 `devtoUsername` in `data/site.js`, so publishing a post makes it appear here
 on the next page load.
 
 Two optional knobs in `data/articles.js`:
 
-- **`ARTICLE_NOTES`** — annotate a post with a custom blurb, or `pinned: true`
+- **`ARTICLE_NOTES`** annotates a post with a custom blurb, or `pinned: true`
   to force it into the featured slot. Keys match against the article URL, so any
   distinctive chunk of the slug works.
-- **`ARTICLES_FALLBACK`** — what renders if dev.to is unreachable. Also the place
-  to list articles published *somewhere other than* dev.to; entries are merged in
-  and de-duplicated by URL.
+- **`ARTICLES_FALLBACK`** is what renders if dev.to is unreachable. It's also the
+  place to list articles published *somewhere other than* dev.to; entries are
+  merged in and de-duplicated by URL.
 
 Without a pin, the featured slot goes to whichever post has the most reactions.
 
@@ -71,16 +71,19 @@ Open `data/certifications.js`:
 {
   name: "AWS Certified Solutions Architect",
   issuer: "Amazon Web Services",
-  abbr: "AWS",                  // 1–3 characters, drawn inside the seal
+  abbr: "AWS",                  // 1 to 3 characters, drawn inside the seal
   level: "Associate",           // Foundational | Associate | Professional | Specialty
-  issued: "Nov 2025",           // optional
-  expires: "Nov 2028",          // optional — drives the Active/Expired pill
-  credentialUrl: "https://…",   // optional — adds a "Verify" link
+  expires: "May 22 2029",       // optional
+  credentialUrl: "https://…",   // optional, adds a "Verify" link
 }
 ```
 
-An **Active** pill appears automatically while `expires` is still in the future,
-and flips to **Expired** after. Omit both dates and no pill is shown.
+`expires` drives two things: the printed **"Expires May 22 2029"** line, and the
+pill. An **Active** pill shows while the date is still in the future and flips to
+**Expired** once it passes. Omit `expires` and neither appears.
+
+The format is `Mon Day Year`. Use a three-letter month so the card stays on one
+line and cards in a row keep matching heights.
 
 ### Change the hero, stats, or contact links
 
@@ -94,9 +97,9 @@ All in `data/site.js`.
 `css/style.css` hard-codes a hex.
 
 This is a personal-brand sibling of my [Code Scribes style
-guide](https://github.com/hop-along-polly/codescribes-styleguide) — same
+guide](https://github.com/hop-along-polly/codescribes-styleguide). Same
 craftsman posture, same Bellefair / Abel / JetBrains Mono type families, same
-4px spacing base and Major Third type scale — with its own accent identity:
+4px spacing base and Major Third type scale, with its own accent identity:
 
 | | Accent |
 |---|---|
@@ -108,10 +111,21 @@ Every foreground/background pair in `tokens.css` is verified against
 5.25:1. If you change a colour, re-check it before committing.
 
 Dark is the default surface. Light is a separate design surface rather than an
-inversion — brass darkens to `#8A6212` there so it still clears 4.5:1 on paper
+inversion, so brass darkens to `#8A6212` there to still clear 4.5:1 on paper
 white. The toggle stores the choice in `localStorage` and falls back to the OS
 preference; an inline script in `<head>` applies it before first paint so the
 page never flashes the wrong theme.
+
+### House style
+
+No em dashes or en dashes anywhere, in copy or in code comments. Use a comma, a
+colon, parentheses, or a second sentence instead. This should come back empty
+before you commit:
+
+```sh
+grep -rnP "\x{2014}|\x{2013}" --include="*.html" --include="*.css" \
+  --include="*.js" --include="*.md" .
+```
 
 ---
 
@@ -149,10 +163,10 @@ through Jekyll.
 ## Structure
 
 ```
-index.html              Page skeleton — sections, no content
+index.html              Page skeleton: sections, no content
 .nojekyll               Tell GitHub Pages to skip Jekyll
 
-data/                   ← everything you'll actually edit
+data/                   <- everything you'll actually edit
   site.js               Identity, hero copy, stat strip, contact links
   projects.js           Projects (featured + compact)
   certifications.js     Certifications

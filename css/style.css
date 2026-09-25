@@ -2,7 +2,7 @@
    style.css
    --------------------------------------------------------------------------
    Layout and components. All colour, type, and spacing values come from
-   css/tokens.css — nothing here hard-codes a hex value.
+   css/tokens.css. Nothing here hard-codes a hex value.
 
    Design posture: a craftsman's ledger. Monospace numbering, hairline brass
    rules, generous vertical rhythm, artwork rendered as line drawings rather
@@ -244,7 +244,7 @@ button { font: inherit; color: inherit; }
   mask-image: radial-gradient(ellipse 80% 65% at 30% 35%, #000 20%, transparent 78%);
 }
 
-/* A single floating brass orb — the one flourish, borrowed from the logo. */
+/* A single floating brass orb, the one flourish, borrowed from the logo. */
 .hero__orb {
   position: absolute;
   z-index: -1;
@@ -522,7 +522,7 @@ button { font: inherit; color: inherit; }
 }
 .project:hover .project__art { border-color: var(--accent-tint-strong); }
 
-/* Corner registration marks — a surveyor's touch. */
+/* Corner registration marks, a surveyor's touch. */
 .project__art::before,
 .project__art::after {
   content: "";
@@ -675,7 +675,7 @@ button { font: inherit; color: inherit; }
 .card__actions .btn { padding: 0.45rem 0.9rem; min-height: 0; font-size: var(--text-sm); }
 
 /* ==========================================================================
-   10. Writing — feature card, filters, ledger
+   10. Writing: feature card, filters, ledger
    ========================================================================== */
 
 .feature {
@@ -1058,7 +1058,7 @@ button { font: inherit; color: inherit; }
   display: block;
   font-size: var(--text-base);
   color: var(--fg);
-  /* Wrap rather than truncate — a half-shown email address is useless. */
+  /* Wrap rather than truncate. A half-shown email address is useless. */
   overflow-wrap: anywhere;
   line-height: 1.35;
 }

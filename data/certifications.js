@@ -7,11 +7,12 @@
      name      (required) Full credential name.
      issuer    (required) Awarding body.
      abbr                 Short badge text drawn inside the seal. Keep it to
-                          1–3 characters ("AWS", "CKA", "GCP").
+                          1 to 3 characters ("AWS", "CKA", "GCP").
      level                Optional tier: "Foundational", "Associate",
                           "Professional", "Specialty".
-     issued               "Nov 2025". Omit if you'd rather not show it.
-     expires              "Nov 2028". Omit for credentials that don't lapse.
+     expires              "May 22 2029". Drives both the printed expiration
+                          line and the Active / Expired pill. Omit for
+                          credentials that never lapse.
      credentialUrl        Link to the verification page, if you have one.
    ========================================================================== */
 
@@ -21,8 +22,7 @@ const CERTIFICATIONS = [
     issuer: "Amazon Web Services",
     abbr: "AWS",
     level: "Associate",
-    // issued: "",
-    // expires: "",
+    expires: "May 22 2029",
     // credentialUrl: "",
   },
   {
@@ -30,8 +30,7 @@ const CERTIFICATIONS = [
     issuer: "Amazon Web Services",
     abbr: "AWS",
     level: "Foundational",
-    // issued: "",
-    // expires: "",
+    expires: "Sep 23 2029",
     // credentialUrl: "",
   },
   {
@@ -39,8 +38,7 @@ const CERTIFICATIONS = [
     issuer: "Amazon Web Services",
     abbr: "AWS",
     level: "Foundational",
-    issued: "Nov 2025",
-    expires: "Nov 2028",
+    expires: "May 22 2029",
     // credentialUrl: "",
   },
 ];

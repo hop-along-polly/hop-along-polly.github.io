@@ -3,7 +3,7 @@
    --------------------------------------------------------------------------
    Inline SVG, injected rather than linked, so the artwork inherits
    `currentColor` and the brass custom property and repaints correctly when
-   the theme flips. Line art at 1.5–2px stroke, per the house style.
+   the theme flips. Line art at 1.5 to 2px stroke, per the house style.
 
    To give a new project artwork, either add a motif here and reference it by
    key (`art: "myMotif"`), or skip all this and point `image:` at a file.
