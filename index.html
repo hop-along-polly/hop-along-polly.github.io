@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Derek Drummond — Software Engineer</title>
+<meta name="description" content="Portfolio of Derek Drummond, a software engineer with 14+ years building cloud-native applications and data pipelines. Browser games, technical writing, and AWS certifications.">
+<meta name="author" content="Derek Drummond">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Derek Drummond — Software Engineer">
+<meta property="og:description" content="Browser games built without a framework, articles on the craft of software, and AWS certifications. The half of my work that doesn't fit on a résumé.">
+<meta property="og:url" content="https://hop-along-polly.github.io/">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://hop-along-polly.github.io/">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://dev.to" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abel&family=Bellefair&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/style.css">
+
+<script>
+  /* Resolve the theme before first paint so the page never flashes the
+     wrong surface. Explicit choice wins; otherwise follow the OS. */
+  (function () {
+    try {
+      var saved = localStorage.getItem("theme");
+      var prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+      document.documentElement.setAttribute(
+        "data-theme",
+        saved || (prefersLight ? "light" : "dark")
+      );
+    } catch (e) { /* private mode — the dark default in the markup stands */ }
+  })();
+</script>
+</head>
+
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header" id="top">
+  <div class="site-header__inner">
+    <a class="brand" href="#top">
+      <span class="brand__mark" aria-hidden="true">DD</span>
+      <span class="brand__name">Derek Drummond</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Sections">
+      <a href="#work">Work</a>
+      <a href="#writing">Writing</a>
+      <a href="#credentials">Credentials</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <button class="theme-toggle" id="theme-toggle" type="button"
+            aria-label="Switch to light theme">
+      <span class="theme-toggle__icon" data-icon="sun"></span>
+      <span class="theme-toggle__icon" data-icon="moon"></span>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ==================================================================== -->
+  <!-- Hero                                                                 -->
+  <!-- ==================================================================== -->
+  <section class="hero">
+    <div class="hero__grid" aria-hidden="true"></div>
+    <div class="hero__orb" aria-hidden="true"></div>
+
+    <div class="wrap hero__inner">
+      <p class="hero__kicker" id="hero-kicker"></p>
+      <h1 class="hero__name">Derek Drummond</h1>
+      <div class="hero__rule" aria-hidden="true"><span></span><i></i></div>
+      <p class="hero__lede" id="hero-lede"></p>
+      <p class="hero__note" id="hero-note"></p>
+
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="#work">Selected Work</a>
+        <a class="btn" href="#writing">Read the Articles</a>
+        <a class="btn btn--ghost" href="https://www.linkedin.com/in/derek-drummond/"
+           target="_blank" rel="noopener noreferrer">
+          LinkedIn <span class="btn__ext" data-icon="external"></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================================== -->
+  <!-- Stat strip                                                           -->
+  <!-- ==================================================================== -->
+  <section class="stats" aria-label="Career at a glance">
+    <div class="wrap">
+      <dl class="stats__list" id="stats-list"></dl>
+    </div>
+  </section>
+
+  <!-- ==================================================================== -->
+  <!-- Work                                                                 -->
+  <!-- ==================================================================== -->
+  <section class="section" id="work">
+    <div class="wrap">
+      <header class="section-head">
+        <span class="section-head__num">01</span>
+        <h2 class="section-head__title">Selected Work</h2>
+        <span class="section-head__rule" aria-hidden="true"></span>
+      </header>
+      <p class="section-head__blurb">
+        Games I built to stay sharp. Both run on nothing but HTML, CSS, and
+        JavaScript — no framework, no build step, no install. Open a tab and play.
+      </p>
+
+      <div class="featured" id="featured-projects"></div>
+
+      <header class="section-head section-head--sub">
+        <h3 class="section-head__title section-head__title--sm">More from the Workshop</h3>
+        <span class="section-head__rule" aria-hidden="true"></span>
+      </header>
+      <div class="cards" id="more-projects"></div>
+    </div>
+  </section>
+
+  <!-- ==================================================================== -->
+  <!-- Writing                                                              -->
+  <!-- ==================================================================== -->
+  <section class="section section--alt" id="writing">
+    <div class="wrap">
+      <header class="section-head">
+        <span class="section-head__num">02</span>
+        <h2 class="section-head__title">Writing</h2>
+        <span class="section-head__rule" aria-hidden="true"></span>
+      </header>
+      <p class="section-head__blurb">
+        Long-form notes on design principles, language trade-offs, and the
+        habits that keep a codebase honest. Pulled live from
+        <a href="https://dev.to/ezzy1337" target="_blank" rel="noopener noreferrer">dev.to</a>,
+        so this list is never out of date.
+      </p>
+
+      <div class="feature-article" id="feature-article"></div>
+
+      <div class="filters" id="article-filters" role="group" aria-label="Filter articles by topic"></div>
+
+      <ol class="ledger" id="article-list">
+        <li class="ledger__loading" id="article-loading">
+          <span class="ledger__spinner" aria-hidden="true"></span>
+          Fetching the latest from dev.to…
+        </li>
+      </ol>
+
+      <p class="ledger__empty" id="article-empty" hidden>
+        No articles match that topic.
+      </p>
+      <p class="notice" id="article-notice" hidden></p>
+    </div>
+  </section>
+
+  <!-- ==================================================================== -->
+  <!-- Credentials                                                          -->
+  <!-- ==================================================================== -->
+  <section class="section" id="credentials">
+    <div class="wrap">
+      <header class="section-head">
+        <span class="section-head__num">03</span>
+        <h2 class="section-head__title">Credentials</h2>
+        <span class="section-head__rule" aria-hidden="true"></span>
+      </header>
+      <p class="section-head__blurb">
+        Certifications earned, plus the degree that started it all.
+      </p>
+
+      <div class="certs" id="certs-list"></div>
+
+      <div class="education">
+        <div class="education__mark" aria-hidden="true">BS</div>
+        <div>
+          <h3 class="education__degree">B.S., Computer Science</h3>
+          <p class="education__school">Colorado State University</p>
+        </div>
+        <p class="education__dates">Aug 2011 — May 2015</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================================== -->
+  <!-- Contact                                                              -->
+  <!-- ==================================================================== -->
+  <section class="section section--alt" id="contact">
+    <div class="wrap">
+      <header class="section-head">
+        <span class="section-head__num">04</span>
+        <h2 class="section-head__title">Get in Touch</h2>
+        <span class="section-head__rule" aria-hidden="true"></span>
+      </header>
+      <p class="section-head__blurb" id="contact-blurb"></p>
+
+      <div class="contact" id="contact-links"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap site-footer__inner">
+    <p class="site-footer__note">
+      Built by hand with HTML, CSS, and JavaScript — no framework, no build step.
+    </p>
+    <p class="site-footer__meta">
+      <span id="footer-year"></span> · Colorado Springs, CO
+    </p>
+  </div>
+</footer>
+
+<script src="data/site.js"></script>
+<script src="data/projects.js"></script>
+<script src="data/certifications.js"></script>
+<script src="data/articles.js"></script>
+<script src="js/motifs.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

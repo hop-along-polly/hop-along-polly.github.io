@@ -1,0 +1,135 @@
+/* ==========================================================================
+   Design Tokens
+   --------------------------------------------------------------------------
+   Personal brand for Derek Drummond. Shares its DNA with the Code Scribes
+   style guide -- same craftsman posture, same type families, same 4px spacing
+   base and Major Third type scale -- but carries its own accent identity:
+
+     Code Scribes  ->  Scribe Teal   #1B8996   (the studio)
+     This site     ->  Brass         #C89434   (the person)
+
+   Brass reads as workshop tooling and quill-gold rather than corporate teal,
+   and every pairing below is verified against WCAG 2.1 AA.
+   ========================================================================== */
+
+:root {
+  /* ---- Type families ---------------------------------------------------- */
+  --font-heading: "Bellefair", Georgia, "Times New Roman", serif;
+  --font-body: "Abel", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", Consolas, monospace;
+
+  /* ---- Type scale (Major Third, 1.250) ---------------------------------- */
+  --text-xs: 0.75rem;     /* 12px */
+  --text-sm: 0.875rem;    /* 14px */
+  --text-base: 1rem;      /* 16px */
+  --text-lg: 1.125rem;    /* 18px */
+  --text-xl: 1.25rem;     /* 20px */
+  --text-2xl: 1.563rem;   /* 25px */
+  --text-3xl: 1.953rem;   /* 31px */
+  --text-4xl: 2.441rem;   /* 39px */
+  --text-5xl: 3.052rem;   /* 49px */
+  --text-6xl: 3.815rem;   /* 61px */
+
+  /* ---- Spacing (4px base) ----------------------------------------------- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+
+  /* ---- Geometry --------------------------------------------------------- */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-full: 9999px;
+  --container: 1200px;
+  --hairline: 1px;
+
+  /* ---- Motion ----------------------------------------------------------- */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --dur-fast: 120ms;
+  --dur: 220ms;
+  --dur-slow: 420ms;
+}
+
+/* ==========================================================================
+   Dark theme -- the default surface. "Light rises, dark recedes": elevation
+   is communicated by surface lightness, not by shadow.
+   ========================================================================== */
+
+:root,
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --ground: #0a0a0c;        /* page background            */
+  --surface-1: #131316;     /* cards, header              */
+  --surface-2: #1c1c20;     /* nested / hover             */
+  --surface-3: #28282e;     /* active / selected          */
+
+  --fg: #f1f1f2;            /* 17.5:1 on ground           */
+  --fg-muted: #9b9ba3;      /*  7.2:1 on ground           */
+  --fg-faint: #6b6b73;      /* decorative only            */
+
+  --border: #232328;
+  --border-strong: #33333a;
+
+  --accent: #e3b15a;        /* 10.1:1 on ground -- text, links, rules   */
+  --accent-hi: #f1c87c;     /* hover: lighter, toward the light         */
+  --accent-solid: #c89434;  /* button fill, pairs with --accent-ink     */
+  --accent-ink: #0a0a0c;    /*  7.3:1 on accent-solid                   */
+  --accent-tint: rgba(227, 177, 90, 0.1);
+  --accent-tint-strong: rgba(227, 177, 90, 0.22);
+
+  --success: #4ade80;
+  --success-tint: rgba(74, 222, 128, 0.1);
+
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.4);
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.5), 0 1px 2px -1px rgb(0 0 0 / 0.5);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.6), 0 2px 4px -2px rgb(0 0 0 / 0.6);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.7), 0 4px 6px -4px rgb(0 0 0 / 0.7);
+
+  /* Blueprint grid behind the hero */
+  --grid-line: rgba(227, 177, 90, 0.07);
+}
+
+/* ==========================================================================
+   Light theme -- a separate design surface, not an inversion. Brass darkens
+   to #8a6212 so it clears 4.5:1 on paper-white.
+   ========================================================================== */
+
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --ground: #fbfaf8;        /* warm paper, nodding at parchment */
+  --surface-1: #ffffff;
+  --surface-2: #f4f2ee;
+  --surface-3: #e7e4dd;
+
+  --fg: #1b1b1e;            /* 16.5:1 on ground */
+  --fg-muted: #5c5c63;      /*  6.4:1 on ground */
+  --fg-faint: #8d8d95;
+
+  --border: #e4e1da;
+  --border-strong: #cfcbc2;
+
+  --accent: #8a6212;        /*  5.3:1 on ground */
+  --accent-hi: #6d4c0c;     /* hover: darker, toward the ink */
+  --accent-solid: #8a6212;
+  --accent-ink: #ffffff;    /*  5.5:1 on accent-solid */
+  --accent-tint: rgba(138, 98, 18, 0.08);
+  --accent-tint-strong: rgba(138, 98, 18, 0.18);
+
+  --success: #16a34a;
+  --success-tint: rgba(22, 163, 74, 0.1);
+
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.04);
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.08), 0 1px 2px -1px rgb(0 0 0 / 0.08);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.08);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.08);
+
+  --grid-line: rgba(138, 98, 18, 0.08);
+}
