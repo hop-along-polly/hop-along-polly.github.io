@@ -16,7 +16,7 @@ const SITE = {
   hero: {
     kicker: "Engineer · Mentor · Team Lead",
     lede: "14+ years building cloud-native applications and data pipelines that carry millions of requests a day. I've led teams that shipped 10 products across cyber-security, fin-tech, and ad-tech, and mentored 50+ engineers along the way.",
-    note: "This site is the half of my work that doesn't fit on a résumé: the things I built for the love of the craft, and articles I have written about doing mastering the craft of coding.",
+    note: "This site is the half of my work that doesn't fit on a résumé: the things I built for the love of the craft, and articles I have written about mastering the craft of coding.",
   },
 
   /* The numbers strip under the hero. Add or remove entries freely. */
