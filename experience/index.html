@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Experience | Derek Drummond</title>
+<meta name="description" content="The long-form work history of Derek Drummond: each role, what I built, and the business value it delivered, from agentic AI platforms to fintech, AI security, and cloud infrastructure.">
+<meta name="author" content="Derek Drummond">
+
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Experience | Derek Drummond">
+<meta property="og:description" content="Each role, what I built, and why it mattered to the business.">
+<meta property="og:url" content="https://hop-along-polly.github.io/experience/">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://hop-along-polly.github.io/experience/">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abel&family=Bellefair&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/style.css">
+
+<script>
+  /* Resolve the theme before first paint so the page never flashes the
+     wrong surface. Explicit choice wins; otherwise follow the OS. */
+  (function () {
+    try {
+      var saved = localStorage.getItem("theme");
+      var prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+      document.documentElement.setAttribute(
+        "data-theme",
+        saved || (prefersLight ? "light" : "dark")
+      );
+    } catch (e) { /* private mode, so the dark default in the markup stands */ }
+  })();
+</script>
+</head>
+
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header" id="top">
+  <div class="site-header__inner">
+    <a class="brand" href="../">
+      <span class="brand__mark" aria-hidden="true">DD</span>
+      <span class="brand__name">Derek Drummond</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Sections">
+      <a href="../#work">Portfolio</a>
+      <a href="./" class="is-current" aria-current="page">Experience</a>
+      <a href="../#writing">Writing</a>
+      <a href="../#credentials">Credentials</a>
+      <a href="../#contact">Contact</a>
+    </nav>
+
+    <button class="theme-toggle" id="theme-toggle" type="button"
+            aria-label="Switch to light theme">
+      <span class="theme-toggle__icon" data-icon="sun"></span>
+      <span class="theme-toggle__icon" data-icon="moon"></span>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ==================================================================== -->
+  <!-- Page header                                                          -->
+  <!-- ==================================================================== -->
+  <section class="hero hero--page">
+    <div class="hero__grid" aria-hidden="true"></div>
+    <div class="hero__orb" aria-hidden="true"></div>
+
+    <div class="wrap hero__inner">
+      <p class="hero__kicker">Work History · 14+ Years</p>
+      <h1 class="hero__name hero__name--page">Experience</h1>
+      <div class="hero__rule" aria-hidden="true"><span></span><i></i></div>
+      <p class="hero__lede">
+        The long version of my résumé. For each role: what I was there to do,
+        what I built, and what it was worth to the business.
+      </p>
+
+      <ol class="role-index" id="role-index" aria-label="Roles on this page"></ol>
+    </div>
+  </section>
+
+  <!-- ==================================================================== -->
+  <!-- Timeline                                                             -->
+  <!-- ==================================================================== -->
+  <section class="section section--tight">
+    <div class="wrap">
+      <div class="timeline" id="experience-list"></div>
+
+      <div class="experience-cta">
+        <p>Want the short version, or to talk about a role?</p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="../#contact">Get in Touch</a>
+          <a class="btn btn--ghost" href="https://www.linkedin.com/in/derek-drummond/"
+             target="_blank" rel="noopener noreferrer">
+            LinkedIn <span class="btn__ext" data-icon="external"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap site-footer__inner">
+    <p class="site-footer__meta">
+      <span id="footer-year"></span> · Colorado Springs, CO
+    </p>
+  </div>
+</footer>
+
+<script src="../data/site.js"></script>
+<script src="../data/experience.js"></script>
+<script src="../js/motifs.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

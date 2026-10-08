@@ -1089,3 +1089,180 @@ button { font: inherit; color: inherit; }
   letter-spacing: 0.06em;
   color: var(--fg-faint);
 }
+
+/* ==========================================================================
+   14. Experience page (/experience/)
+   --------------------------------------------------------------------------
+   A ledger of roles: dates and tenure in a mono margin column, the narrative
+   beside it, hung from a brass hairline with a diamond at each entry.
+   ========================================================================== */
+
+.hero--page { padding-block: clamp(var(--space-12), 9vw, var(--space-16)) var(--space-12); }
+.hero__name--page { font-size: clamp(var(--text-5xl), 8vw, var(--text-6xl)); }
+
+/* Jump list under the page header. */
+.role-index {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: var(--space-2) var(--space-6);
+  margin-top: var(--space-12);
+  padding-top: var(--space-6);
+  border-top: var(--hairline) solid var(--border);
+}
+
+.role-index__link {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  column-gap: var(--space-3);
+  padding-block: var(--space-2);
+  text-decoration: none;
+  color: inherit;
+}
+.role-index__company { font-size: var(--text-base); color: var(--fg); }
+.role-index__title { grid-row: 2; font-size: var(--text-sm); color: var(--fg-muted); }
+.role-index__years {
+  grid-row: 1 / span 2;
+  align-self: center;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.06em;
+  color: var(--fg-faint);
+}
+.role-index__link:hover .role-index__company,
+.role-index__link:hover .role-index__years { color: var(--accent); }
+
+.section--tight { padding-top: var(--space-8); }
+
+.timeline {
+  position: relative;
+  display: grid;
+  gap: var(--space-16);
+}
+
+/* The brass spine, offset to sit between the margin column and the body. */
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: var(--space-2);
+  bottom: 0;
+  left: 12rem;
+  width: var(--hairline);
+  background: linear-gradient(to bottom, var(--accent-tint-strong), var(--border) 85%, transparent);
+}
+
+.role {
+  display: grid;
+  grid-template-columns: 12rem minmax(0, 1fr);
+  scroll-margin-top: var(--space-24);
+}
+
+.role__meta {
+  padding-right: var(--space-8);
+  text-align: right;
+}
+
+.role__dates {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.role__tenure,
+.role__facts {
+  margin-top: var(--space-1);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  color: var(--fg-faint);
+}
+
+.role__body {
+  position: relative;
+  padding-left: var(--space-8);
+  max-width: 72ch;
+}
+
+/* Diamond marker on the spine, level with the company name. */
+.role__body::before {
+  content: "";
+  position: absolute;
+  left: calc(-0.3rem + var(--hairline) / 2);
+  top: 0.35em;
+  width: 0.6rem;
+  height: 0.6rem;
+  background: var(--accent);
+  transform: rotate(45deg);
+  box-shadow: 0 0 0 4px var(--ground);
+}
+
+.role__company {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+}
+
+.role__title {
+  margin-block: var(--space-2) var(--space-6);
+  font-size: clamp(var(--text-2xl), 3.4vw, var(--text-4xl));
+  line-height: 1.15;
+}
+
+.role__summary { display: grid; gap: var(--space-4); }
+.role__summary p {
+  color: var(--fg);
+  font-size: var(--text-lg);
+  line-height: 1.6;
+}
+
+.role__note {
+  margin-top: var(--space-6);
+  padding-left: var(--space-4);
+  border-left: 2px solid var(--border-strong);
+  color: var(--fg-muted);
+  font-size: var(--text-base);
+}
+
+.role__label {
+  margin-top: var(--space-8);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--fg-faint);
+}
+
+.role__highlights { margin-block: var(--space-3) 0; }
+.role .chips { margin-top: var(--space-3); }
+
+.role__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}
+
+.experience-cta {
+  margin-top: var(--space-24);
+  padding-top: var(--space-12);
+  border-top: var(--hairline) solid var(--border);
+  text-align: center;
+}
+.experience-cta p { color: var(--fg-muted); font-size: var(--text-lg); }
+.experience-cta .hero__actions { justify-content: center; margin-top: var(--space-6); }
+
+@media (max-width: 48rem) {
+  .timeline::before { left: 0; }
+  .role { grid-template-columns: 1fr; }
+  .role__meta {
+    padding: 0 0 var(--space-3) var(--space-8);
+    text-align: left;
+  }
+  .role__meta p { display: inline; }
+  .role__meta p + p::before { content: " · "; color: var(--fg-faint); }
+  .role__body::before { top: calc(-1 * var(--space-6)); }
+}

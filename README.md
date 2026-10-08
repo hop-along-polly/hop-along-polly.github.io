@@ -85,6 +85,33 @@ pill. An **Active** pill shows while the date is still in the future and flips t
 The format is `Mon Day Year`. Use a three-letter month so the card stays on one
 line and cards in a row keep matching heights.
 
+### Update work history
+
+The `/experience/` page renders from `data/experience.js`. Each role is a
+narrative (`summary` paragraphs), a `highlights` list of quantified wins, and a
+`tech` list. It's the long-form source of truth for résumés and LinkedIn, so
+keep the numbers exact. Newest role first; the field list is at the top of the
+file.
+
+```js
+{
+  id: "veup",                  // anchor: /experience/#veup
+  company: "VeUP",
+  title: "Principal Cloud Engineer",
+  start: "Feb 2026",
+  end: "Sep 2026",             // omit for a current role ("Present")
+  type: "Full-time",
+  location: "Remote",
+  summary: ["Paragraph one.", "Paragraph two."],
+  note: "Optional one-line context, e.g. why the role ended.",
+  highlights: ["Quantified win", "Another one"],
+  tech: ["Python", "AWS"],
+}
+```
+
+Tenure ("1 yr 4 mos") is computed from `start` and `end`, counting both months
+the way LinkedIn does.
+
 ### Change the hero, stats, or contact links
 
 All in `data/site.js`.
@@ -164,10 +191,12 @@ through Jekyll.
 
 ```
 index.html              Page skeleton: sections, no content
+experience/index.html   Work history page skeleton (served at /experience/)
 .nojekyll               Tell GitHub Pages to skip Jekyll
 
 data/                   <- everything you'll actually edit
   site.js               Identity, hero copy, stat strip, contact links
+  experience.js         Work history: narrative, highlights, tech per role
   projects.js           Projects (featured + compact)
   certifications.js     Certifications
   articles.js           Article notes + offline fallback
@@ -178,7 +207,7 @@ css/
 
 js/
   motifs.js             Inline SVG artwork and icons
-  main.js               Renders every section from data/
+  main.js               Renders every section from data/ (both pages)
 
 assets/
   favicon.svg

@@ -4,6 +4,8 @@
    Adding content should never mean touching this file. Projects come from
    data/projects.js, certifications from data/certifications.js, and articles
    are fetched live from dev.to with data/articles.js as the safety net.
+   The /experience/ page shares this file and renders from data/experience.js.
+   Each renderer skips itself when its section isn't on the current page.
    ========================================================================== */
 
 (function () {
@@ -109,12 +111,16 @@
      ========================================================================== */
 
   function renderIdentity() {
+    $("#footer-year").textContent = "© " + new Date().getFullYear() + " " + SITE.name;
+    $(".brand__mark").textContent = SITE.monogram;
+
+    /* Everything below lives on the home page only. */
+    if (!$("#hero-kicker")) return;
+
     $("#hero-kicker").textContent = SITE.hero.kicker + " · " + SITE.location;
     $("#hero-lede").textContent = SITE.hero.lede;
     $("#hero-note").textContent = SITE.hero.note;
     $("#contact-blurb").textContent = SITE.contact.blurb;
-    $("#footer-year").textContent = "© " + new Date().getFullYear() + " " + SITE.name;
-    $(".brand__mark").textContent = SITE.monogram;
 
     $("#stats-list").innerHTML = SITE.stats
       .map(
@@ -213,6 +219,8 @@
   }
 
   function renderProjects() {
+    if (!$("#featured-projects")) return;
+
     const featured = PROJECTS.filter((p) => p.featured);
     const rest = PROJECTS.filter((p) => !p.featured);
 
@@ -239,6 +247,8 @@
   }
 
   function renderCerts() {
+    if (!$("#certs-list")) return;
+
     $("#certs-list").innerHTML = CERTIFICATIONS.map((cert) => {
       const expiry = parseCertDate(cert.expires);
       const active = expiry ? expiry >= new Date() : null;
@@ -276,6 +286,99 @@
           </div>
         </article>`;
     }).join("");
+  }
+
+  /* ==========================================================================
+     Experience (/experience/)
+     ========================================================================== */
+
+  /** "Feb 2026" -> { y, m } with m zero-based, or null if unparseable. */
+  function parseMonthYear(label) {
+    const parts = String(label || "").trim().split(/\s+/);
+    const m = MONTHS.indexOf((parts[0] || "").slice(0, 3).toLowerCase());
+    const y = parseInt(parts[1], 10);
+    return m < 0 || isNaN(y) ? null : { y: y, m: m };
+  }
+
+  /** Inclusive month count, matching how LinkedIn reports tenure. */
+  function tenure(start, end) {
+    const a = parseMonthYear(start);
+    const now = new Date();
+    const b = end ? parseMonthYear(end) : { y: now.getFullYear(), m: now.getMonth() };
+    if (!a || !b) return "";
+
+    const months = b.y * 12 + b.m - (a.y * 12 + a.m) + 1;
+    const yrs = Math.floor(months / 12);
+    const mos = months % 12;
+    return [
+      yrs ? yrs + (yrs === 1 ? " yr" : " yrs") : "",
+      mos ? mos + (mos === 1 ? " mo" : " mos") : "",
+    ].filter(Boolean).join(" ");
+  }
+
+  function renderRole(role) {
+    const range = esc(role.start) + " to " + (role.end ? esc(role.end) : "Present");
+    const facts = [role.type, role.location].filter(Boolean).map(esc).join(" · ");
+
+    return `
+      <article class="role reveal" id="${esc(role.id)}">
+        <div class="role__meta">
+          <p class="role__dates">${range}</p>
+          <p class="role__tenure">${esc(tenure(role.start, role.end))}</p>
+          ${facts ? `<p class="role__facts">${facts}</p>` : ""}
+        </div>
+
+        <div class="role__body">
+          <p class="role__company">${esc(role.company)}</p>
+          <h2 class="role__title">${esc(role.title)}</h2>
+
+          <div class="role__summary">
+            ${(role.summary || []).map((p) => `<p>${esc(p)}</p>`).join("")}
+          </div>
+
+          ${role.note ? `<p class="role__note">${esc(role.note)}</p>` : ""}
+
+          ${
+            role.highlights && role.highlights.length
+              ? `<h3 class="role__label">Highlights</h3>
+                 <ul class="project__highlights role__highlights">
+                   ${role.highlights.map((h) => `<li>${esc(h)}</li>`).join("")}
+                 </ul>`
+              : ""
+          }
+
+          ${
+            role.tech && role.tech.length
+              ? `<h3 class="role__label">${esc(role.techLabel || "Technologies")}</h3>
+                 <ul class="chips chips--sm">${chips(role.tech)}</ul>`
+              : ""
+          }
+
+          ${
+            role.links && role.links.length
+              ? `<div class="role__links">${projectLinks(role)}</div>`
+              : ""
+          }
+        </div>
+      </article>`;
+  }
+
+  function renderExperience() {
+    const list = $("#experience-list");
+    if (!list) return;
+
+    list.innerHTML = EXPERIENCE.map(renderRole).join("");
+
+    $("#role-index").innerHTML = EXPERIENCE.map(
+      (role) => `
+        <li>
+          <a class="role-index__link" href="#${esc(role.id)}">
+            <span class="role-index__company">${esc(role.company)}</span>
+            <span class="role-index__title">${esc(role.title)}</span>
+            <span class="role-index__years">${esc(role.start.split(" ")[1])}</span>
+          </a>
+        </li>`
+    ).join("");
   }
 
   /* ==========================================================================
@@ -458,6 +561,8 @@
   }
 
   function loadArticles() {
+    if (!$("#article-list")) return;
+
     const fallback = normalize(ARTICLES_FALLBACK);
     const endpoint =
       "https://dev.to/api/articles?username=" +
@@ -525,6 +630,7 @@
     renderIdentity();
     renderProjects();
     renderCerts();
+    renderExperience();
 
     hydrateIcons(document);
     observeReveals(document);
